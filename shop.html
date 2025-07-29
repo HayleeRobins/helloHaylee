@@ -31,89 +31,20 @@
       margin-bottom: 20px;
     }
 
-    .price {
-      font-size: 1.3rem;
-      color: #d47a9b;
-      font-weight: bold;
-    }
-
-    .note {
-      margin-top: 20px;
-      font-style: italic;
-      color: #8c7e88;
-    }
-
- .slideshow-container {
-      position: relative;
-      max-width: 300px;
-      margin: auto;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-
-    .slide {
-      display: none;
-    }
-
-    .slide img {
-      width: 100%;
-      border-radius: 15px;
-    }
-
-    .active {
-      display: block;
-    }
-
   </style>
 </head>
 <body>
 
   <h1><strong>helloHaylee Shop</strong></h1>
 
+ <!--
+  <img src="phonecase.png" alt="helloHaylee Tough Phone Case">
+<p><a href="https://payhip.com/b/vgAki">Tough Phone Case</a></p>-->
  
-  <img src="phonecase.png" alt="helloHaylee Phone Case">
+  <img src="slimPC.png" alt="helloHaylee Slim Phone Case">
+  <p><a href="https://payhip.com/b/vgAki">Slim Phone Case</a></p>
 
-  <div class="price">$29.99</div>
-
-  <div class="slideshow-container">
-    <div class="slide active">
-      <img src="shirt-front.jpg" alt="Shirt Front">
-    </div>
-    <div class="slide">
-      <img src="shirt-back.jpg" alt="Shirt Back">
-    </div>
-    <div class="slide">
-      <img src="shirt-tag.jpg" alt="Shirt Tag">
-    </div>
-    <div class="slide">
-      <img src="shirt-duo.jpg" alt="Model Wearing Shirt">
-    </div>
-  </div>
-
-</body>
-
-<script>
-let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-
-    function showSlides() {
-      slides.forEach((slide, index) => {
-        slide.classList.remove('active');
-      });
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].classList.add('active');
-    }
-
-    // Start the slideshow
-    setInterval(showSlides, 2500); // change every 2.5 seconds
-  </script>
-  
- <div class="price"></div>
- <p>Sizes: Small-5XL</p>
-  
-
-  <p class="note">Launching soon – stay tuned and follow me on Insta for updates! </p>
+ 
 
 </body>
 </div>
