@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <link rel="icon" href="https://i.pinimg.com/736x/e1/ce/21/e1ce2118347b5ca8b7544f1fde7ae3a9.jpg" type="image/jpeg">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+         <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Mini Card Game</title>
+    </head>
+
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff7f8; /* soft pastel pink */
+      color: #5d4a4a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    h1 {
+      color: #ff9bb3;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    #playerForm {
+      margin-bottom: 20px;
+      background: #ffe9ee;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 10px rgba(255, 155, 179, 0.3);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #playerForm input {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1.5px solid #ffb6c1;
+      font-size: 1rem;
+      width: 160px;
+      box-sizing: border-box;
+    }
+    #playerForm button {
+      background: #ff9bb3;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      min-width: 100px;
+    }
+    #playerForm button:hover {
+      background: #ff6f8a;
+    }
+    #scoreBoard {
+      display: none;
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: #fff0f2;
+      padding: 15px 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 10px rgba(255, 155, 179, 0.2);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+    .turn {
+      color: #ff6f8a;
+      font-weight: 700;
+    }
+    #gameBoard {
+        display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* flexible columns */
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 10px;
+  box-sizing: border-box;
+    }
+    .card {
+          width: 150px;      /* fixed width */
+  height: 220px;     /* fixed height for rectangle */
+  background-color: #ffeef2; /* pastel pink */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      border-radius: 15px;
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+      cursor: default;
+    }
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-front {
+      background: #ffbad2; /* pastel pink */
+      transform: rotateY(180deg);
+      overflow: hidden;
+    }
+    .card-back {
+      background: #ffcbd3; /* lighter pastel pink */
+    }
+    /* Buttons below */
+    #controls {
+       display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 700px;
+  box-sizing: border-box;
+    }
+    #controls button {
+       background: #ff9bb3;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  min-width: 120px;
+  flex: 1 1 150px; /* Helps buttons wrap nicely on small screens */
+  max-width: 200px;
+    }
+    #controls button:hover {
+      background: #ff6f8a;
+    }
+    /* Winner message */
+    #winnerMessage {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ff5572;
+      margin-top: 15px;
+      min-height: 2rem;
+      text-align: center;
+      min-width: 300px;
+    }
+
+    @media (max-width: 768px) {
+  #gameBoard {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on mobile */
+    gap: 15px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Mini Matching Card Game 🌸</h1>
+
+  <form id="playerForm">
+    <input type="text" id="player1" placeholder="Player 1 Name" required />
+    <input type="text" id="player2" placeholder="Player 2 Name" required />
+    <button type="submit">Start Game</button>
+  </form>
+
+  <div id="scoreBoard">
+    <span id="player1Name"></span>: <span id="player1Score">0</span> points &nbsp;&nbsp;|&nbsp;&nbsp;
+    <span id="player2Name"></span>: <span id="player2Score">0</span> points
+    <br />
+    <br />
+    <span>It's <span class="turn" id="currentTurn"></span>'s turn!</span>
+  </div>
+
+  <div id="gameBoard"></div>
+
+  <div id="controls" style="display:none;">
+    <button id="shuffleBtn">Shuffle Cards</button>
+    <button id="restartBtn">Restart Game</button>
+  </div>
+
+  <div id="winnerMessage"></div>
+
+  <script>
+    const playerForm = document.getElementById('playerForm');
+    const gameBoard = document.getElementById('gameBoard');
+    const scoreBoard = document.getElementById('scoreBoard');
+    const player1NameSpan = document.getElementById('player1Name');
+    const player2NameSpan = document.getElementById('player2Name');
+    const player1ScoreSpan = document.getElementById('player1Score');
+    const player2ScoreSpan = document.getElementById('player2Score');
+    const currentTurnSpan = document.getElementById('currentTurn');
+    const winnerMessage = document.getElementById('winnerMessage');
+    const controls = document.getElementById('controls');
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const restartBtn = document.getElementById('restartBtn');
+
+    // Example card content: you can replace these with image URLs or emojis
+    // For simplicity, I'm using emojis as card "faces"
+    const cardFaces = [
+      '🌸', '🌸',
+      '🐰', '🐰',
+      '🍃', '🍃',
+      '🦋', '🦋',
+      '🎀', '🎀',
+      '🌷', '🌷',
+      '🐝', '🐝',
+      '☁️', '☁️'
+    ];
+
+    let cards = [];
+    let flippedCards = [];
+    let matchedCount = 0;
+
+    let player1 = '';
+    let player2 = '';
+    let scores = { player1: 0, player2: 0 };
+    let currentPlayer = 'player1';
+    let busy = false; // to prevent clicks while cards flipping back
+
+    // Shuffle function - Fisher-Yates
+    function shuffle(array) {
+      let currentIndex = array.length, randomIndex;
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+      }
+      return array;
+    }
+
+    function createCards() {
+      gameBoard.innerHTML = '';
+      cards = [];
+
+      // Shuffle cardFaces before creating cards
+      const shuffledFaces = shuffle(cardFaces.slice());
+
+      shuffledFaces.forEach((face, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.face = face;
+        card.dataset.index = index;
+
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="card-front">${face}</div>
+            <div class="card-back">🫧</div>
+          </div>
+        `;
+        card.addEventListener('click', onCardClick);
+        gameBoard.appendChild(card);
+        cards.push(card);
+      });
+    }
+
+    function onCardClick(e) {
+      if (busy) return;
+      const card = e.currentTarget;
+      if (card.classList.contains('flipped') || flippedCards.includes(card)) return;
+
+      flipCard(card);
+      flippedCards.push(card);
+
+      if (flippedCards.length === 2) {
+        busy = true;
+        setTimeout(checkForMatch, 1000);
+      }
+    }
+
+    function flipCard(card) {
+      card.classList.add('flipped');
+    }
+
+    function unflipCards() {
+      flippedCards.forEach(card => card.classList.remove('flipped'));
+      flippedCards = [];
+    }
+
+    function checkForMatch() {
+      const [card1, card2] = flippedCards;
+      if (card1.dataset.face === card2.dataset.face) {
+        // Match found
+        matchedCount += 2;
+        scores[currentPlayer]++;
+        updateScores();
+
+        flippedCards = [];
+        busy = false;
+
+        // Player gets another turn
+        updateTurnMessage();
+
+        if (matchedCount === cards.length) {
+          showWinner();
+          controls.style.display = 'none';
+        }
+      } else {
+        // No match, flip back and change turn
+        setTimeout(() => {
+          unflipCards();
+          flippedCards = [];
+          switchTurn();
+          busy = false;
+        }, 1000);
+      }
+    }
+
+    function switchTurn() {
+      currentPlayer = currentPlayer === 'player1' ? 'player2' : 'player1';
+      updateTurnMessage();
+    }
+
+    function updateScores() {
+      player1ScoreSpan.textContent = scores.player1;
+      player2ScoreSpan.textContent = scores.player2;
+    }
+
+    function updateTurnMessage() {
+      currentTurnSpan.textContent = currentPlayer === 'player1' ? player1 : player2;
+    }
+
+    function showWinner() {
+      if (scores.player1 > scores.player2) {
+        winnerMessage.textContent = `🎉 ${player1} wins with ${scores.player1} points! 🎉`;
+      } else if (scores.player2 > scores.player1) {
+        winnerMessage.textContent = `🎉 ${player2} wins with ${scores.player2} points! 🎉`;
+      } else {
+        winnerMessage.textContent = "It's a tie! Well played both! 🤝";
+      }
+    }
+
+    function startGame() {
+      scores = { player1: 0, player2: 0 };
+      matchedCount = 0;
+      currentPlayer = 'player1';
+      winnerMessage.textContent = '';
+      updateScores();
+      updateTurnMessage();
+      createCards();
+      gameBoard.style.display = 'grid';
+      scoreBoard.style.display = 'block';
+      controls.style.display = 'flex';
+      playerForm.style.display = 'none';
+    }
+
+    playerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      player1 = playerForm.player1.value.trim() || 'Player 1';
+      player2 = playerForm.player2.value.trim() || 'Player 2';
+      player1NameSpan.textContent = player1;
+      player2NameSpan.textContent = player2;
+      startGame();
+    });
+
+    shuffleBtn.addEventListener('click', () => {
+      // Reshuffle cards but keep scores and players
+      createCards();
+      matchedCount = 0;
+      flippedCards = [];
+      busy = false;
+      winnerMessage.textContent = '';
+      updateTurnMessage();
+    });
+
+    restartBtn.addEventListener('click', () => {
+      // Reset everything
+      playerForm.style.display = 'flex';
+      gameBoard.style.display = 'none';
+      scoreBoard.style.display = 'none';
+      controls.style.display = 'none';
+      winnerMessage.textContent = '';
+      playerForm.player1.value = '';
+      playerForm.player2.value = '';
+      scores = { player1: 0, player2: 0 };
+      matchedCount = 0;
+      flippedCards = [];
+      busy = false;
+    });
+  </script>
+</body>
+
+  <div class="nav-buttons">
+  <a href="/gallery/" class="btn">← Back</a>
+  
+</div>
+    </html>
