@@ -1,8 +1,0 @@
-[build]
-  publish = "."
-
-[[redirects]]
-  from = "/shop"
-  to = "/shop/index.html"
-  status = 200
-  force = true
