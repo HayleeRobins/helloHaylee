@@ -1,229 +1,78 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>helloHaylee</title>
-  <style>
+    <head>
+     <link rel="icon" href="https://i.pinimg.com/736x/e1/ce/21/e1ce2118347b5ca8b7544f1fde7ae3a9.jpg" type="image/jpeg">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+         <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Shop</title>
+    </head>
+
+<h1>Shop</h1>
+
+<style>
+    h1{
+        color: pink;
+        font-family: 'Pacifico';
+        font-size: 55px;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fff4f9;
-      color: #3e0000;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    header {
-      background-color: #ffe6f0;
-      padding: 20px;
+      font-family: 'Poppins', sans-serif;
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      background-color: #ffeef4;
+      padding: 40px;
+      color: #5a4a52;
     }
 
-    header h1 {
-      font-size: 3em;
-      color: #ff99cc;
-      margin: 0;
-      font-family: 'Courier New', Courier, monospace;
+    img {
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
     }
 
-    .hero-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      padding-top: 100px;
-      padding-bottom: 80px;
-      gap: 30px;
-      max-width: 1000px;
-      margin: auto;
+    a:hover{
+      color: #8B0000;
     }
-
-    .hero-section img {
-      max-width: 400px;
-      width: 100%;
-      height: auto;
-      clip-path: circle(50%);
-      float: none;
+    a{
+      color:#5a4a52;
     }
-
-    .code-snippet {
-      font-size: 20px;
-      text-align: left;
-      flex: 1;
-      padding: 0;
-      color: #3e0000;
-    }
-
-    .code-snippet code {
-      background-color: #ffe6f0;
-      padding: 20px;
-      border-radius: 10px;
-      display: block;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      white-space: pre-wrap;
-    }
-
-    .about-container {
-      text-align: center;
-      padding: 30px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .about-container h2 {
-      font-size: 2em;
-      color: #6e1030;
-      font-family: 'Courier New', Courier, monospace;
-     
-    }
-
-    .about-container p {
-      font-size: 1.2em;
-      line-height: 1.6;
-      color: #6e1030;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    footer {
-
-      text-align: center;
-      padding: 15px;
-      font-size: 1em;
-      color: #6e1030;
-      margin-top: 40px;
-    }
-
-    /* 🌸 Mobile View Fix */
-    @media (max-width: 768px) {
-      .hero-section {
-        flex-direction: column;
-        align-items: center;
-        padding-top: 50px;
-        padding-bottom: 50px;
-      }
-
-      .hero-section img {
-        max-width: 80%;
-        margin-bottom: 20px;
-      }
-
-      .code-snippet {
-        font-size: 16px;
-        text-align: center;
-        padding: 0 10px;
-      }
-
-      .about-container {
-        padding: 0 20px;
-        text-align: center;
-      }
-    }
-
-    .code-snippet code::after {
-  content: "|";
-  animation: blink 1.5s infinite;
-  color: #3e0000;
-  margin-left: 4px;
-  
-}
-
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
-}
-
-#menu ul{
-  list-style: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  text-align: center;
-  background-color: rgb(255, 240, 242);
-  border-radius: 100px;
-  border-top: 1px;
-}
-#menu li{
-  display: inline;
-  padding-top: 15px;
-  padding-bottom: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-	
-a{
-    color: #3e0000;
-    text-decoration: none;
-}
-a:hover{
-    color: rgb(255, 174, 188); 
-
-}
-
-.about{
-    background-color: rgb(255, 255, 231);
-    border-radius: 100px;
-}
   </style>
 </head>
 <body>
 
-<div class="container">
-    <div id="menu">
-    <section class="heading">
-        <ul><strong>
-            <li><a href="/shop/">Shop</a></li>
-            <li><a href="/projects/">Projects</a></li>
-            <li><a href="/services/">Services</a></li>
-            <li><a href="/contactMe/">Contact Me</a></li>
-        </strong></ul></div>
+  <h1><strong>helloHaylee Shop</strong></h1>
 
-  
+ <!--
+  <img src="phonecase.png" alt="helloHaylee Tough Phone Case">
+<p><a href="https://payhip.com/b/vgAki">Tough Phone Case</a></p>-->
+ 
+  <img src="slimPC.png" alt="helloHaylee Slim Phone Case">
+  <p>helloHaylee Logo <a href="https://payhip.com/b/vgAki">Slim Phone Case</a></p>
 
-  <section class="hero-section">
-    <img src="https://i.pinimg.com/736x/e1/ce/21/e1ce2118347b5ca8b7544f1fde7ae3a9.jpg" alt="helloHaylee Logo">
-    <div class="code-snippet">
-      <pre><code><strong>
-if (openWebsite) {
-    console.log("building a soft brand and aesthetic content");
-}
-else {
-    wait_patiently("your soft dev girlie"); 
-    return true;
-}
-      </strong></code></pre>
-    </div>
-  </section>
-<div class="about">
-  <section class="about-container">
-    <h2>About Me</h2>
-   
-   <p>Hi! I’m Haylee, but online, you’ll probably know me as <strong>helloHaylee</strong> 🌸 I’m so happy you’re here — truly, it means the world to me!</p>
+ <img src="codePC.png" alt="'I Love Code' Slim Phone Case">
+  <p>"I Love Code" <a href="https://payhip.com/b/hzXtk">Slim Phone Case</a></p>
 
-      <p>I’m 21, a huge believer in using tech to create comfort and connection, and currently studying to become a full-stack developer. What started as a dream to build a wellness app turned into a full-blown love for programming — and now, I can’t imagine doing anything else. 💻✨</p>
+  <img src="mug.png" alt="helloHaylee Logo Mug">
+  <p>helloHaylee Logo <a href="https://payhip.com/b/uP13X">Mug</a></p>
 
-      <p>The idea first came from a tough season in my life. I live with anxiety and depression, and I longed for a journal app that could hold my thoughts, track emotions, and offer gentle guidance — but I couldn’t find one that felt right. So I decided: I’ll make it myself.</p>
+ <img src="cottonShoes.png" alt="Cotton Candy Heart Shoes">
+  <p>Cotton Candy <a href="https://payhip.com/b/ya2zd">Heart Shoes</a></p>
 
-      <p>That decision introduced me to <em>coding</em>. At first, it was hard. Really hard. But the more I learned, the more I fell in love with it — the creativity, the problem-solving, the fact that I could take something from my imagination and make it real. It felt like God had opened a door just for me.</p>
+  <img src="logoPS.png" alt="helloHaylee Logo Phone Stand">
+  <p>helloHaylee Logo <a href="https://payhip.com/b/3ygTI">Phone Stand</a></p>
 
-      <p>Since then, I’ve been taking a <strong>Computer Science course from Harvard</strong> through edX, and even a <strong>Psychology course from Yale</strong> on Coursera. I want the things I build to be smart, beautiful, and rooted in understanding people — because that’s what matters most to me. 🧠💖</p>
-
-      <p>Outside of coding, I love reading, learning new things, and making cozy, aesthetic content on YouTube and TikTok. I’m also working on building my brand, <strong>helloHaylee</strong>, which you can check out in the <a href="#shop">Shop tab</a> 🧸☕</p>
-
-      <p>Whether it’s a meaningful website, a cozy game, or a cute product, I design with heart. I know what it’s like to feel overwhelmed or alone, and if something I make helps even one person feel seen or encouraged — that’s what success looks like to me.</p>
-
-      <p>I truly believe this path is from God. He wouldn’t have planted this dream in my heart if He didn’t want me to grow it — and I’m so excited to see how it blooms. 🌸</p>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 helloHaylee. All rights reserved.
-  </footer>
+   <img src="logoTote.png" alt="helloHaylee Logo Tote Bag">
+  <p>helloHaylee Logo <a href="https://payhip.com/b/ERlxG">Tote Bag</a></p>
 
 </body>
-</html>
+</div>
+
+
+
+
+    </html>
